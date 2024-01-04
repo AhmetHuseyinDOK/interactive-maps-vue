@@ -5,6 +5,6 @@ import MapViewVue from '@/components/MapView.vue';
 
 <template>
   <main>
-    <MapViewVue url="maps/world.json"></MapViewVue>
+    <MapViewVue url="maps/id.json"></MapViewVue>
   </main>
 </template>
