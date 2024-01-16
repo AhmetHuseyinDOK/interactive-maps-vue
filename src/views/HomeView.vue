@@ -1,7 +1,7 @@
 <script setup lang="ts">
 
 import { computed, ref } from 'vue';
-import { countries } from '@/data/maps';
+import { countries, regions } from '@/data/maps';
 import { codeCountryMap } from '@/data/country';
 import MapViewVue from '@/components/MapView.vue';
 import SimpleMapsCredit from '@/components/SimpleMapsCredit.vue';
@@ -26,7 +26,23 @@ const filteredList = computed(() => {
 
     <input v-model="search" type="search" placeholder="Search" style="margin-bottom: 10px;" />
     <SimpleMapsCredit></SimpleMapsCredit>
+    <a v-if="!search" :href="`#/map/world`">
+      <div class="mapItem">
+        <div>World</div>
+        <MapViewVue :url="`./maps/world.json`"></MapViewVue>
+      </div>
+    </a>
+    <a v-if="!search" :key="region" v-for="region in regions" :href="`#/map/${region}`"></a>
+    <div class="mapList grid" style="grid-template-columns: repeat(3, 1fr);">
+      <a v-if="!search" :key="region" v-for="region in regions" :href="`#/map/${region}`">
+        <div class="mapItem">
+          <div>{{ region }}</div>
+          <MapViewVue disabled :url="`./maps/${region}.json`"></MapViewVue>
+        </div>
+      </a>
+    </div>
     <div class="maplist grid">
+
       <a :key="code" v-for="code in filteredList" :href="`#/map/${code}`">
         <div class="mapItem">
           <div>{{ codeCountryMap[code]?.name }}</div>
@@ -109,4 +125,5 @@ main {
 h1 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: black;
-}</style>
+}
+</style>
