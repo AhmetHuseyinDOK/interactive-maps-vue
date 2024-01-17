@@ -1,40 +1,41 @@
-# interactive-maps-vue
+# Vue Interactive Maps
 
-This template should help get you started developing with Vue 3 in Vite.
+Simple and **interactive** maps in vue **without any dependencies**. Want to see what we have ? [See Examples](https://ahmethuseyindok.github.io/interactive-maps-vue/#/) 
 
-## Recommended IDE Setup
+<a href="https://ahmethuseyindok.github.io/interactive-maps-vue/#/"><img width="1475" alt="image" src="https://github.com/AhmetHuseyinDOK/interactive-maps-vue/assets/24893654/a72d0441-84eb-4433-8d98-c27d908e0a10"><a/>
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## How do I use a map ?
 
-## Type Support for `.vue` Imports in TS
+You only need two files:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+- src/components/MapView.vue
+- json url of respective map (e.g: public/maps/tr.json)
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+Usage:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+``` vue 
+<script setup>
+import MapViewVue from '@/components/MapView.vue';
+const selected = ref();
+</script>
+<template>
+      <div>
+        <div>World</div>
+        <MapViewVue v-model:selected="selected" :url="`./maps/world.json`"></MapViewVue>
+      </div>
+</template>
 ```
 
-### Compile and Hot-Reload for Development
+## FAQ
 
-```sh
-npm run dev
-```
+### I need more functionality ?
 
-### Type-Check, Compile and Minify for Production
+I highly recommend modifying MapView.vue to meet your specific case. What I've implemented here is a basic example of what can be done.
 
-```sh
-npm run build
-```
+### Some data is incorrect or missing ?
+
+Some data might be missing or incorrect, simply modify the respective json to meet your needs. 
+
+## Credits
+
+None of the map data used in this repository belongs to me. All data belongs to [Simple Maps](https://simplemaps.com/resources/svg-maps)
